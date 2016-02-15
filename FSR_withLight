@@ -1,0 +1,36 @@
+/* Senior Design Pressure Sensor Sketch
+ 
+Connect one end of FSR to power, the other end to Analog 0.
+Then connect one end of a 10K resistor from Analog 0 to ground 
+ 
+For more information see www.ladyada.net/learn/sensors/fsr.html */
+ 
+int fsrPin = 0;     // the FSR and 10K pulldown are connected to a0
+int fsrReading;     // the analog reading from the FSR resistor divider
+int redLED = 13;    // connect Red LED to pin 13 (built in red LED)
+int greenLED = 10;  // connect Green LED to pin 10 (PWM pin)
+ 
+void setup(void) {
+  // We'll send debugging information via the Serial monitor
+  Serial.begin(9600);   
+  pinMode(redLED, OUTPUT); // have red LED for output
+  pinMode(greenLED, OUTPUT); // have green LED for output
+}
+ 
+void loop(void) {
+  fsrReading = analogRead(fsrPin);  
+ 
+  //Serial.print("Analog reading = ");
+  Serial.println(fsrReading);     // the raw analog reading
+
+  // Thresholds to turn LED lights on or off
+  if (fsrReading > 100) {
+    digitalWrite(redLED, HIGH);
+    digitalWrite(greenLED, LOW);   
+  } else {
+    digitalWrite(greenLED, HIGH);
+    digitalWrite(redLED, LOW);
+  }
+  delay(1000);
+} 
+
