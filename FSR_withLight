@@ -8,7 +8,7 @@ For more information see www.ladyada.net/learn/sensors/fsr.html */
 int fsrPin = 0;     // the FSR and 10K pulldown are connected to a0
 int fsrReading;     // the analog reading from the FSR resistor divider
 int redLED = 13;    // connect Red LED to pin 13 (built in red LED)
-int greenLED = 10;  // connect Green LED to pin 10 (PWM pin)
+int greenLED = 12;  // connect Green LED to pin 10 (PWM pin)
  
 void setup(void) {
   // We'll send debugging information via the Serial monitor
@@ -23,7 +23,7 @@ void loop(void) {
   //Serial.print("Analog reading = ");
   Serial.println(fsrReading);     // the raw analog reading
 
-  // Thresholds to turn LED lights on or off
+  // Thresholds to turn LED lights on or off, adjust threshold value once calibrated
   if (fsrReading > 100) {
     digitalWrite(redLED, HIGH);
     digitalWrite(greenLED, LOW);   
